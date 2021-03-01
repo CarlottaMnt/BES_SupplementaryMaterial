@@ -32,7 +32,7 @@ Implementation files
 
 4_delta_overall_df.R (Implementing the function estimating the Overall latent well being, create the dataframe)
 
-5_herarchical_stan.R  (Stan Code for estimating hierarchical model, i.e. well-being for Italian Macro Areas across time)
+5_hierarchical_stan.R  (Stan Code for estimating hierarchical model, i.e. well-being for Italian Macro Areas across time)
 
 Additional Results
 --------

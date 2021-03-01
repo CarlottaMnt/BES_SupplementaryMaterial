@@ -239,7 +239,7 @@ for (d in domains)
   {
    for (t in years)
    {
-    plot_f[[d]][[t]] <- summary_df_d[[d]]%>% 
+     plot_f[[d]][[t]] <- summary_df_d[[d]]%>% 
     clean_names() %>%     
     filter(anno == t)%>%
     tidyr::gather(Indicatore, value,-c(anno,model,row_names)) %>%

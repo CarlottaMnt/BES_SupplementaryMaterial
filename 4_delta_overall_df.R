@@ -15,13 +15,14 @@ library(janitor)
 #This script must be run only after "2_model_implementation.R". The objective is
 #to estimate the overall well being by applying the factor analytic model another time
 #on the 3-dimensional vector of well being composite indicators estimated in the first step. 
+#Be sure to running the first model for the three well-being dimension. 
 
 
 rm(list=ls())
 #import the data
-source("1_data.RData")
+load("1_data.RData")
 source("Sampler_Factor.R")
-source("delta_df_d.R")
+load("delta_df_d.RData")
 source("functions.R")
 
 
@@ -37,7 +38,7 @@ for (d in domains)
   dataframe[[d]] <- vector("list",length=length(models))
   names(dataframe[[d]]) <- models
   data_df[[d]] <- vector("list",length=length(models))
-  names(data_df[[d]]) <- models]
+  names(data_df[[d]]) <- models
   for (m in models)
   {
     dataframe[[d]][[m]] <- vector("list",length=length(years))
@@ -79,7 +80,7 @@ dataframe <- cbind(data_df_d[["Social"]],"Economic" = data_df_d[["Economic"]]$Ec
 Seed=123
 for (t in years)
  {
- for (m1 in model)
+ for (m1 in models)
   {
       N=107
       J=3
@@ -91,7 +92,7 @@ for (t in years)
                     delta= rmvnorm(N,rep(0),diag(1)),
                     a= ifelse (m %in% c("1","4"), 1, 0)
       )
-      set.seed(Seed + as.numeric(m) + ifelse(m %in% c("3","5"),2,1))
+      set.seed(Seed + as.numeric(m1) + ifelse(m1 %in% c("3","5"),2,1))
 	  xx <- sprintf("Data/overall_%s_%s.RData",t,m1)
 	  print(paste(t,m1))
       output <- simple(n_iter = 30000,burn_in = 20000,
@@ -101,7 +102,7 @@ for (t in years)
                                       1/1000,1/1000,
                                       V_mu=1000,
                                       tuning=ifelse(m == "1",sqrt(1000), sqrt(10/N)),
-		        tuning_lambda= 5,
+		                                  tuning_lambda= 5,
                                       model = "0")
 	save(output,file=xx);
   }

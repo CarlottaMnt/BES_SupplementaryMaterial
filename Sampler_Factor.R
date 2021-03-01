@@ -1,16 +1,16 @@
-
 library(matlab)
 library(Matrix)
 library(mvtnorm)
 library(invgamma)
 library(tidyverse)
 library(matrixcalc)
-load("functions.R")
+source("functions.R")
+
 
 simple <- function(n_iter = 1000,
                    burn_in = 500,
                    y,
-                   intis,
+                   inits,
                    g=0,G=NULL,
                    alpha=1/1000,beta=1/1000,
                    V_mu,

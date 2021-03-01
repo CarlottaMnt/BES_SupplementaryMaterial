@@ -1,18 +1,13 @@
-library(ggmap)
-library(tmaptools)
-library(tmap)
 library(tidyverse)
 library(tidybayes)
 library(spdep)
 library(knitr)
 library(bestNormalize)
-library(dlm)
 library(xtable)
 library(plyr)
 library(gtable)
 library(grid)
 library(gridExtra)
-library(rstan)
 library(data.table)
 ################################################################################
 ######################### BES DATA #############################################
@@ -206,11 +201,6 @@ for (i in 1:N)
   }
 }
 
-
-#Model 3D (Not used in the paper)
-
-PSI_04_d <- nbdists(w, coords= longlat04,longlat = TRUE) #Create the list of neighbors
-
 #OUTPUT VARIABLE-------------------------------------------------------
 
 
@@ -278,3 +268,5 @@ for (d in domains)
 
   }
 }
+
+save.image(file="1_data.RData")

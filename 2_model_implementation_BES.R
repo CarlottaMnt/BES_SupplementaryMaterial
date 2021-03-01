@@ -11,7 +11,7 @@ library(data.table)
 #factor for each Italian Province according to the different parametrizion of
 #prior the spatial matrix explained in the paper.
 rm(list=ls())
-source("1_data.R") #Read_in the BES DATA
+load("1_data.RData") #Read_in the BES DATA
 source("Sampler_Factor.R")#Read_in Sampler
 
 Seed=123
@@ -34,7 +34,7 @@ for (d in domains)
       set.seed(Seed + as.numeric(m) + ifelse(m %in% c("3","5"),2,1))
 	  xx <- sprintf("Data/output_%s_%s_%s.RData",d,m,t)
 	  print(paste(d, m, t))
-      output <- simple(n_iter = 30000, burn_in = 20000,
+      output <- simple(n_iter = 10, burn_in = 0,
                                       y =y_norm[[d]][[t]],
                                       inits,
                                       0, G =10000,

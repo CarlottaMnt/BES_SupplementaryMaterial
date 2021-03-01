@@ -16,7 +16,7 @@ library(janitor)
 -----------------------------------------------------------------------------------
 #Import the initial data
 rm(list=ls())
-source("1_data.RData")
+load("1_data.RData")
 
 #Composite indicator
 delta <- vector("list",length=length(domains))
